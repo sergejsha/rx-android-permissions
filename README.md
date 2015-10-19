@@ -1,4 +1,3 @@
-# rx-android-permissions
 Simple RxJava library for observing and requesting Android runtime permissions introduced in Android 6.0.
 
 # Observing permissions
