@@ -76,6 +76,9 @@ Observable returned by `RxPermissions.request()` method does only complete when 
 # Tests & stability
 Although this library has unit tests covering whole functionality described above, there is still no productive apps using it yet.
 
+# Credits
+This library was enspired by https://github.com/tbruyelle/RxPermissions
+
 # License
 
     Copyright (c) 2015 Sergej Shafarenka, halfbit.de
