@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     @Override public void onStart() {
         super.onStart();
         
-        RxPermissions.get(this)
+        mSubsrciption = RxPermissions.get(this)
               .observe(Manifest.permission.WRITE_EXTERNAL_STORAGE,
                        Manifest.permission.READ_EXTERNAL_STORAGE)
               .subscribe(granted -> {
@@ -21,7 +21,14 @@ public class MainActivity extends AppCompatActivity {
                   }
               });
     }
+    
+    @Override public void onStop() {
+        mSubsrciption.unsubsribe();
+        mSubsrciption = null;
+        super.onStop();
+    }
 }
+
 ```
 
 Note: Returned observable does never complete, so be sure to unsubscribe properly.
@@ -52,7 +59,7 @@ public class OnboardingFragment extends Fragment {
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         
-        RxPermissions.get(getActivity())
+        mSubsrciption = RxPermissions.get(getActivity())
             .request(mPermissionsRequester, 
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -63,6 +70,12 @@ public class OnboardingFragment extends Fragment {
                     // user denied request
                 }
             });
+    }
+    
+    @Override public void onDestroyView() {
+        mSubsrciption.unsubsribe();
+        mSubsrciption = null;
+        super.onDestroyView();
     }
     
     public void onButtonClicked(View view) {
@@ -81,7 +94,7 @@ This library was inspired by https://github.com/tbruyelle/RxPermissions, but it 
 
 # License
 
-    Copyright (c) 2015 Sergej Shafarenka, halfbit.de
+    Copyright (c) 2015, 2016 Sergej Shafarenka, halfbit.de
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
