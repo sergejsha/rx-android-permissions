@@ -10,7 +10,7 @@ public class MainActivity extends AppCompatActivity {
     @Override public void onStart() {
         super.onStart();
         
-        mSubsrciption = RxPermissions.get(this)
+        mSubscription = RxPermissions.get(this)
               .observe(Manifest.permission.WRITE_EXTERNAL_STORAGE,
                        Manifest.permission.READ_EXTERNAL_STORAGE)
               .subscribe(granted -> {
@@ -59,7 +59,7 @@ public class OnboardingFragment extends Fragment {
     @Override public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         
-        mSubsrciption = RxPermissions.get(getActivity())
+        mSubscription = RxPermissions.get(getActivity())
             .request(mPermissionsRequester, 
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.READ_EXTERNAL_STORAGE)
