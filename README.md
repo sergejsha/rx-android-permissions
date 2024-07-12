@@ -1,3 +1,5 @@
+![maintenance-status](https://img.shields.io/badge/maintenance-as--is-yellow.svg)
+
 Simple RxJava library for observing and requesting Android runtime permissions introduced in Android 6.0.
 
 # Observing permissions
